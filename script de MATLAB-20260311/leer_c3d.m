@@ -8,7 +8,8 @@ function [marcadores,informacionCine,Fuerzas,informacionFuerzas,Antropometria,Ev
 
 %[fileName, filePath] = uigetfile('*.c3d'); % Se obtiene  el nombre y direccion del archivo con una ventana emergente
 
-filePath = 'D:\Facultad\5to Año\Primer Cuatrimestre\Biomecanica\';
+%filePath = 'D:\Facultad\5to Año\Primer Cuatrimestre\Biomecanica\';
+filePath = 'D:\Facultad\5to Año\Biomecanica\';
 fileName = '0040_Davis_MarchaDavis_Walking11b2021.c3d';
 [h,~,~] = btkReadAcquisition([filePath fileName]); % Se obtiene un puntero al archivo c3d con el nombre y la ubicacion del archivo especificado
 btkSetPointsUnit(h, 'marker', 'm')

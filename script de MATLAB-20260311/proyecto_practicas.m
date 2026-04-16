@@ -20,7 +20,7 @@ Orden=2;
 primer_frame_recortado=AntesHS;
 ultimo_frame_recortado = UltimoFrame-PrimerFrame+AntesHS; %Preguntar porque anda
 
-%Datos=Filtrar_Marcadores(Datos,fm,frec_corte,Orden,primer_frame_recortado,ultimo_frame_recortado);
+Datos=Filtrar_Marcadores(Datos,fm,frec_corte,Orden,primer_frame_recortado,ultimo_frame_recortado);
 
 %Valores de LHS, LTO, RHS y RTO luego del recorte.
 frameLHS1_recorte=FrameLHS1- PrimerFrame+AntesHS;
