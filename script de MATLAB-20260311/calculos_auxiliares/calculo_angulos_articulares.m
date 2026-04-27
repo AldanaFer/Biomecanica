@@ -1,4 +1,4 @@
-function  Datos=calculo_angulos(Datos)
+function  Datos=calculo_angulos_articulares(Datos)
 
 %===========Angulos cadera derecha===============
 l_cadera_derecha=cross(Datos.sis_local.pelvis.k,Datos.sis_local.muslo_der.i); 

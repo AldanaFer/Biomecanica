@@ -28,13 +28,17 @@ Datos = calculo_uvw(Datos);
 Datos = centro_articular(Datos); 
 Datos = calculo_cm(Datos);
 Datos = calculo_ijk(Datos);
-Datos = calculo_angulos(Datos); 
+Datos = calculo_angulos_articulares(Datos); 
 
 %grafica_uvw(Datos);
 %grafica_centro_articular(Datos);
 %grafica_cm(Datos);
 %grafica_ijk(Datos);
-grafica_angulos(Datos,frameLHS1_recorte,frameLHS2_recorte,frameLTO_recorte,frameRHS1_recorte,frameRHS2_recorte,frameRTO_recorte);
+
+%Datos=calculo_max_min(Datos); 
+%mostrar_min_max(Datos); 
+
+grafica_angulos_articulares(Datos,frameLHS1_recorte,frameLHS2_recorte,frameLTO_recorte,frameRHS1_recorte,frameRHS2_recorte,frameRTO_recorte);
 
 %===================AHORA CON LOS DATOS FILTRADOS=======================
 fm=Datos.info.Cinematica.frequency;
@@ -48,10 +52,18 @@ Datos = calculo_uvw(Datos);
 Datos = centro_articular(Datos); 
 Datos = calculo_cm(Datos);
 Datos = calculo_ijk(Datos);
-Datos = calculo_angulos(Datos); 
+Datos = calculo_angulos_articulares(Datos); 
 
 %grafica_uvw(Datos);
 %grafica_centro_articular(Datos);
 %grafica_cm(Datos);
 %grafica_ijk(Datos);
-grafica_angulos(Datos,frameLHS1_recorte,frameLHS2_recorte,frameLTO_recorte,frameRHS1_recorte,frameRHS2_recorte,frameRTO_recorte);
+
+%Grafica guarda maximos y minimos correspondiente al % ciclo de marcha
+Datos=grafica_angulos_articulares(Datos,frameLHS1_recorte,frameLHS2_recorte,frameLTO_recorte,frameRHS1_recorte,frameRHS2_recorte,frameRTO_recorte);
+mostrar_min_max(Datos); 
+
+
+%==============================================================================
+Datos=CalculaAngulosEuler(Datos); 
+grafica_euler(Datos); 
