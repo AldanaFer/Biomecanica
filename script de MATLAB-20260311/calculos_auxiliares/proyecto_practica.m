@@ -4,7 +4,7 @@ clc; close all; clear all;
 %RTO despege de pie derecho 
 %LHS primer contacto pie izqueirdo 
 %RHS primer contacto pie derecho 
-
+%Sujeto 40
 [Datos,Archivo] = CargarRegistro();
 
 [DerechaPlataforma1,PrimerFrame,UltimoFrame,FrameRHS1,FrameLHS1,FrameRHS2,FrameLHS2,FrameRTO,FrameLTO] = Ciclo2Pasos(Datos);
@@ -66,4 +66,18 @@ mostrar_min_max(Datos);
 
 %==============================================================================
 Datos=CalculaAngulosEuler(Datos); 
-grafica_euler(Datos); 
+grafica_ang_euler(Datos); 
+
+Datos = CalculoVelocidadEuler(Datos);
+grafica_vel_ang(Datos,frameLHS1_recorte,frameLHS2_recorte,frameLTO_recorte,frameRHS1_recorte,frameRHS2_recorte,frameRTO_recorte);
+
+
+
+%calculo_masa_inercia(Datos);
+%grafica_cm_centros_articulares(Datos);
+
+
+
+
+
+

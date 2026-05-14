@@ -1,47 +1,79 @@
 function Datos = CalculaAngulosEuler(Datos)
-campos = fieldnames(Datos.sis_local);
 
-I = [1 0 0];
-K = [0 0 1];
+campos = fieldnames(Datos.sis_local);
 
 for c = 1:length(campos)
 
     nombre = campos{c};
 
-    i_seg = Datos.sis_local.(nombre).i;
-    j_seg = Datos.sis_local.(nombre).j;
-    k_seg = Datos.sis_local.(nombre).k;
-
-    N = size(i_seg,1);
-
-    alpha = zeros(N,1);
-    beta  = zeros(N,1);
-    gamma = zeros(N,1);
-
-    for m = 1:N
-
-        i = i_seg(m,:);
-        j = j_seg(m,:);
-        k = k_seg(m,:);
-
-        %============== Linea de nodos ==============
-        LN = cross(K,k);
-        LN = LN / norm(LN);
-
-        %================ Alpha =====================
-        alpha(m) = asind(dot(cross(I,LN),K,2));
-
-        %================ Beta ======================
-        beta(m) = asind(dot(cross(K,k),LN,2));
-
-        %================ Gamma =====================
-        gamma(m) = -(dot(j,LN,2) / abs(dot(j,LN,2))) * acosd(dot(i,LN,2));
-
+    % Saltear Davis
+    if contains(lower(nombre),'davis')
+        continue
     end
 
-    Datos.euler.(nombre).alpha = alpha;
-    Datos.euler.(nombre).beta  = beta;
-    Datos.euler.(nombre).gamma = gamma;
+    i = Datos.sis_local.(nombre).i;
+    j = Datos.sis_local.(nombre).j;
+    k = Datos.sis_local.(nombre).k;
+
+    %=========================== Calculo ===========================
+    [alfasen, alfacos, ...
+     betasen, betacos, ...
+     gamasen, gamacos] = anguloeuler(i,j,k);
+
+    %=========================== Seleccion final ===========================
+
+    switch lower(nombre)
+
+        %=========================== Pie izquierdo ===========================
+        case 'pie_izq'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamacos;
+
+        %=========================== Pie derecho ===========================
+        case 'pie_der'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamacos;
+
+        %=========================== Pierna izquierda ===========================
+        case 'pierna_izq'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamacos;
+
+        %=========================== Pierna derecha ===========================
+        case 'pierna_der'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamacos;
+
+        %=========================== Muslo izquierdo ===========================
+        case 'muslo_izq'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamacos;
+
+        %=========================== Muslo derecho ===========================
+        case 'muslo_der'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamacos;
+
+        %=========================== Pelvis ===========================
+        case 'pelvis'
+
+            Datos.euler.(nombre).alpha = alfasen;
+            Datos.euler.(nombre).beta  = betacos;
+            Datos.euler.(nombre).gamma = gamasen;
+
+    end
 
 end
 
